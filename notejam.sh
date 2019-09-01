@@ -27,8 +27,10 @@ sudo composer update --prefer-lowest
 
 touch app/database/notejam.db
 
-chown -R apache:apache /var/www/html
-
 sudo php artisan migrate --no-interaction
 
 sed -i '/RewriteEngine On/a RewriteBase /' /var/www/html/laravel/notejam/public/.htaccess
+
+echo $(hostname) > /var/www/html/laravel/notejam/public/healthcheck.html
+
+chown -R apache:apache /var/www/html
